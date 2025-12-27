@@ -58,13 +58,19 @@ npm install
 Configure environment variables in `.env`:
 ```env
 PORT=5000
+NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/salary-expense-manager
 JWT_SECRET=your_super_secret_jwt_key_change_this_in_production_12345
 JWT_EXPIRE=7d
-NODE_ENV=development
+ALLOWED_ORIGINS=http://localhost:3000
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
 ```
 
-**Important**: Change `JWT_SECRET` to a secure random string in production!
+**CRITICAL SECURITY WARNING**: 
+- **NEVER** use the example JWT_SECRET in production!
+- Generate a secure secret: `node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"`
+- See [SECURITY.md](SECURITY.md) for complete security guidelines
 
 ### 3. Frontend Setup
 
